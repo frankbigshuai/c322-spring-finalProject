@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="commonStyle.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="index.html">
+          <img src="/assets/logo.png" alt="" class="header-logo"
+        /></a>
+        <ul class="header-nav">
+          <li>Track Order</li>
+          <li>Help</li>
+
+          <li>
+            <a href="/basket.html"
+              ><i class="fa-solid fa-basket-shopping"></i
+            ></a>
+          </li>
+        </ul>
+      </header>
+      <main>
+        <div>
+          <button><a href="signup.html">SIGN UP</a></button>
+          <button class="login">LOG IN</button>
+        </div>
+        <div class="input-box">
+          <label for="">User Name</label>
+          <input type="text" placeholder="User Name" id="username" />
+        </div>
+        <div class="input-box">
+          <label for="">Password</label>
+          <input type="password" placeholder="Password" id="password" />
+        </div>
+        <button onclick="login()">Log In</button>
+      </main>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/4744aa9515.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="configuration.js"></script>
+  </body>
+</html>

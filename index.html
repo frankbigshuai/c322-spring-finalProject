@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="commonStyle.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="index.html">
+          <img src="/assets/logo.png" alt="" class="header-logo"
+        /></a>
+        <ul class="header-nav">
+          <li><a href="trackOrder.html">Track Order</a></li>
+          <li>Help</li>
+          <li>
+            <a href="basket.html"
+              ><i class="fa-solid fa-basket-shopping"></i
+            ></a>
+          </li>
+          <li id="basket-counter"><span id="basket-count"></span></li>
+          <li></li>
+        </ul>
+      </header>
+      <div class="hero">
+        <div class="hero-left">
+          <div class="hero-left-title-Box">
+            <h1>Send Her Blooms</h1>
+          </div>
+          <hr />
+          <p>She will Love! Shop All Mother's Day Flowers and Gifts!</p>
+        </div>
+        <div class="hero-right">
+          <img src="/assets/hero_flower.avif" alt="" class="hero-flower" />
+        </div>
+      </div>
+      <div class="filter">
+        <div class="filter-box">
+          <h3>FILTER BY</h3>
+          <select
+            name="Flower_Type"
+            id="Flower_Type"
+            onchange="displayTheFlowers()"
+          >
+            <option value="flower_type" disabled selected>Flower Type</option>
+            <option value="mixed">mixed</option>
+            <option value="roses">roses</option>
+            <option value="lilies">lilies</option>
+            <option value="tulips">tulips</option>
+            <option value="dasies">dasies</option>
+          </select>
+          <select name="Occasion" id="Occasion" onchange="displayTheFlowers()">
+            <option value="occasion" disabled selected>Occasion</option>
+            <option value="mothers_day">Mother's day</option>
+            <option value="birthday">birthday</option>
+            <option value="thank_you">thank you</option>
+          </select>
+          <select name="Colors" id="Colors" onchange="displayTheFlowers()">
+            <option value="Colors" disabled selected>Colors</option>
+            <option value="mixed">mixed</option>
+            <option value="red">red</option>
+            <option value="yellow">yellow</option>
+            <option value="green">green</option>
+            <option value="orange">orange</option>
+          </select>
+          <button onclick="resetFilters()" class="resetBtn">
+            Reset Filters
+          </button>
+        </div>
+
+        <div class="filter-box">
+          <h3>SORT</h3>
+          <select
+            name="sort_filter"
+            id="sort_filter"
+            onchange="displayTheFlowers()"
+          >
+            <option value="l_to_h">Price: Low To High</option>
+            <option value="h_to_l">Price: High To Low</option>
+          </select>
+        </div>
+      </div>
+      <main>
+        <div id="list"></div>
+      </main>
+    </div>
+    <script src="configuration.js"></script>
+    <script
+      src="https://kit.fontawesome.com/4744aa9515.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      let host = "http://localhost:8080";
+      let flowers = [];
+      displayTheFlowers();
+
+      async function displayTheFlowers() {
+        let list = document.getElementById("list");
+        let flowerTypeFilter = document.getElementById("Flower_Type").value;
+        let occasionFilter = document.getElementById("Occasion").value;
+        let colorFilter = document.getElementById("Colors").value;
+        let sortOption = document.getElementById("sort_filter").value;
+
+        let response = await fetch(host + "/flowers").then((response) =>
+          response.json()
+        );
+
+        if (sortOption === "l_to_h") {
+          response.sort((a, b) => a.price - b.price);
+        } else if (sortOption === "h_to_l") {
+          response.sort((a, b) => b.price - a.price);
+        }
+
+        let filteredFlowers = response.filter((flower) => {
+          if (
+            flowerTypeFilter !== "flower_type" &&
+            flower.types !== flowerTypeFilter
+          )
+            return false;
+          if (
+            occasionFilter !== "occasion" &&
+            flower.occasions !== occasionFilter
+          )
+            return false;
+          if (colorFilter !== "Colors" && flower.colors !== colorFilter)
+            return false;
+          return true;
+        });
+
+        list.innerHTML = "";
+
+        filteredFlowers.forEach((flower, index) => {
+          let img = document.createElement("img");
+          img.src = `http://localhost:8080/flowers/image/${flower.id}`;
+          let div = document.createElement("div");
+          div.className = "card";
+          div.id = `flower_${flower.id}`;
+
+          const flowerData = {
+            flowername: flower.name,
+            flowerid: flower.id,
+            flowerprice: flower.price,
+          };
+
+          img.addEventListener("click", function () {
+            localStorage.setItem("selectedFlower", JSON.stringify(flowerData));
+            location.reload();
+          });
+
+          console.log(flowerData);
+
+          div.appendChild(img);
+          let nameParagraph = document.createElement("p");
+          nameParagraph.textContent = flower.name;
+          div.appendChild(nameParagraph);
+          let priceParagraph = document.createElement("p");
+          priceParagraph.textContent = `Price: $${flower.price.toFixed(2)}`;
+          div.appendChild(priceParagraph);
+          list.appendChild(div);
+        });
+      }
+
+      function resetFilters() {
+        document.getElementById("Flower_Type").selectedIndex = 0;
+        document.getElementById("Occasion").selectedIndex = 0;
+        document.getElementById("Colors").selectedIndex = 0;
+
+        displayTheFlowers();
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        let basketItems = localStorage.getItem("selectedFlower");
+
+        let basketCountSpan = document.getElementById("basket-count");
+        basketCountSpan.textContent = basketItems ? "1" : "0";
+      });
+    </script>
+  </body>
+</html>

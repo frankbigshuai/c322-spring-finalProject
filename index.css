@@ -1,0 +1,71 @@
+.hero {
+  display: flex;
+  margin-left: 70px;
+  gap: 10px;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  background: #f2e1da;
+  width: 700px;
+  padding: 20px 30px;
+}
+.hero-left hr {
+  width: 40px;
+  text-align: left;
+  margin-left: 5px;
+  background-color: #e2e2e2;
+}
+
+.hero-flower {
+  width: 500px;
+  height: 250px;
+}
+
+.filter {
+  margin-left: 80px;
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #e2e2e2;
+  padding: 20px 10px;
+  border-radius: 10px;
+}
+
+.filter-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.filter-box select {
+  padding: 10px 10px;
+  padding-right: 50px;
+  border-radius: 5px;
+}
+
+main {
+  margin-left: 80px;
+  align-items: center;
+}
+
+#list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  cursor: pointer;
+}
+
+img {
+  width: 30%;
+  height: 80%;
+}
+
+.resetBtn {
+  padding: 10px 10px;
+  font-size: 15px;
+}

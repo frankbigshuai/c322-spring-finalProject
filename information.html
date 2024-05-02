@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="commonStyle.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="information.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="index.html">
+          <img src="/assets/logo.png" alt="" class="header-logo"
+        /></a>
+        <ul class="header-nav">
+          <li>Track Order</li>
+          <li>Help</li>
+          <li>
+            <a href="/basket.html"
+              ><i class="fa-solid fa-basket-shopping"></i
+            ></a>
+          </li>
+        </ul>
+      </header>
+      <div class="login_signup_button">
+        <button>LOG IN</button>
+        <button>SIGN UP</button>
+      </div>
+      <main>
+        <form id="userForm">
+          <fieldset>
+            <div class="input-box">
+              <label for="firstName">First Name</label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                placeholder="First Name"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label for="lastName">Last Name</label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                placeholder="Last Name"
+                required
+              />
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Relationship</legend>
+            <select name="relationship" id="relationship">
+              <option value="relationship" disabled selected>Select</option>
+              <option value="parent">Parent</option>
+              <option value="wife">Wife</option>
+              <option value="husband">Husband</option>
+              <option value="girl_friend">Girl Friend</option>
+              <option value="boy_friend">Boy Friend</option>
+            </select>
+          </fieldset>
+          <fieldset>
+            <legend>Address</legend>
+            <input type="text" id="address" placeholder="Address" required />
+          </fieldset>
+          <fieldset class="main-input-box">
+            <div class="input-box">
+              <label for="aptSuite">Apt/Suit</label>
+              <input
+                type="text"
+                id="aptSuite"
+                placeholder="Apt/Suit"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label for="city">City</label>
+              <input type="text" id="city" placeholder="City" required />
+            </div>
+          </fieldset>
+          <fieldset>
+            <div class="input-box">
+              <label for="state">State</label>
+              <select name="state" id="state">
+                <option value="state" disabled selected>Select</option>
+                <option value="IN">Indiana</option>
+                <option value="CA">California</option>
+                <option value="NY">NewYork</option>
+              </select>
+            </div>
+            <div class="input-box">
+              <label for="zipCode">Zip Code</label>
+              <input type="text" id="zipCode" placeholder="Zip Code" required />
+            </div>
+          </fieldset>
+          <button type="button" onclick="saveFormData()">CONTINUE</button>
+        </form>
+      </main>
+    </div>
+    <script src="configuration.js"></script>
+    <script
+      src="https://kit.fontawesome.com/4744aa9515.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function saveFormData() {
+        const formData = {
+          firstName: document.getElementById("firstName").value,
+          lastName: document.getElementById("lastName").value,
+          relationship: document.getElementById("relationship").value,
+          address: document.getElementById("address").value,
+          aptSuite: document.getElementById("aptSuite").value,
+          city: document.getElementById("city").value,
+          state: document.getElementById("state").value,
+          zipCode: document.getElementById("zipCode").value,
+        };
+        localStorage.setItem("formData", JSON.stringify(formData));
+        window.location.href = "order.html";
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const formData = JSON.parse(localStorage.getItem("formData"));
+        if (formData) {
+          document.getElementById("firstName").value = formData.firstName;
+          document.getElementById("lastName").value = formData.lastName;
+          document.getElementById("relationship").value = formData.relationship;
+          document.getElementById("address").value = formData.address;
+          document.getElementById("aptSuite").value = formData.aptSuite;
+          document.getElementById("city").value = formData.city;
+          document.getElementById("state").value = formData.state;
+          document.getElementById("zipCode").value = formData.zipCode;
+        }
+      });
+    </script>
+  </body>
+</html>

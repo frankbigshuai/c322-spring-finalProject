@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="commonStyle.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="order.css" />
+  </head>
+  <body>
+    <div class="container">
+        <header>
+            <a href="index.html"> <img src="/assets/logo.png" alt="" class="header-logo" /></a>
+             <ul class="header-nav">
+               <li>Track Order</li>
+               <li>Help</li>
+               <li>
+                 <a href="login.html"><i class="fa-solid fa-user"></i></a></li>
+               </li>
+         
+             </ul>
+           </header>
+
+           <main>
+            <div class="main-left">
+              
+            </div>
+            <div class="main-right">
+              <h1 id="main-right-title"></h1>
+              <a href="trackOrder.html"><button>PLACE ORDER</button></a>
+            </div>
+           </main>
+           </div>
+           <script
+           src="https://kit.fontawesome.com/4744aa9515.js"
+           crossorigin="anonymous"
+         ></script>
+         <script src="configuration.js"></script>
+         <script>
+       
+         const host = "http://localhost:8080"
+       document.addEventListener("DOMContentLoaded", async function() {
+        let flowerObj = localStorage.getItem("selectedFlower");
+  const flowerData = JSON.parse(flowerObj)
+  const flowerId = flowerData.flowerid
+  const flowerName = flowerData.flowername
+  const flowerPrice = flowerData.flowerprice  
+
+  console.log(flowerData)
+         if (flowerId !== null && flowerId !== undefined) {
+           let img = document.createElement("img");
+           img.src = `http://localhost:8080/flowers/image/${flowerId}`;
+           let mainLeftDiv = document.querySelector(".main-left");
+           mainLeftDiv.appendChild(img);
+       }
+        
+         document.getElementById("main-right-title").innerHTML = `<ul><li>${flowerName}</li>
+            <li>SUBTOTAL: $${flowerPrice}.00</li>
+            <li>Delivery: $25.00</li>
+            <li>Delivery: Discount -$10.00</li>
+            <li>ORDER TOTAL: $${flowerPrice + 25 -10}.00</li>
+            </ul>`;
+       });
+       
+         </script>
+  </body>
+
+</html>

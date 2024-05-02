@@ -1,0 +1,48 @@
+.login_signup_button {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+legend {
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+
+label {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+input {
+  padding: 20px 10px;
+  font-size: 20px;
+  width: 500px;
+}
+
+fieldset {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+select {
+  padding: 10px 10px;
+  padding-right: 50px;
+  border-radius: 5px;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+}

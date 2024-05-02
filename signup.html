@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="commonStyle.css" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <a href="index.html">
+          <img src="/assets/logo.png" alt="" class="header-logo"
+        /></a>
+        <ul class="header-nav">
+          <li>Track Order</li>
+          <li>Help</li>
+          <li>
+            <a href="/basket.html"
+              ><i class="fa-solid fa-basket-shopping"></i
+            ></a>
+          </li>
+        </ul>
+      </header>
+      <main>
+        <h1>SIGN UP TO SAVE</h1>
+        <div>
+          <button class="signup">SIGN UP</button>
+          <button><a href="login.html">LOG IN</a></button>
+        </div>
+        <div class="input-box">
+          <label for="">UserName</label>
+          <input type="email" placeholder="Username" id="username" required />
+        </div>
+        <div class="input-box">
+          <label for="">Email</label>
+          <input
+            type="email"
+            placeholder="name@example.com"
+            id="email"
+            required
+          />
+        </div>
+        <div class="input-box">
+          <label for="">Password</label>
+          <input type="password" placeholder="Password" id="password" />
+        </div>
+        <div class="input-box">
+          <label for="">Address</label>
+          <input type="email" placeholder="Address" id="address" required />
+        </div>
+        <button onclick="signup()">CREATE AN ACCOUNT</button>
+      </main>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/4744aa9515.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="signup.js"></script>
+    <script src="configuration.js"></script>
+  </body>
+</html>
